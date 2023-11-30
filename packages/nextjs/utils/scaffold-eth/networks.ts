@@ -9,7 +9,11 @@ type ChainAttributes = {
   nativeCurrencyTokenAddress?: string;
 };
 
-const NETWORKS_EXTRA_DATA: Record<string, ChainAttributes> = {
+// To allow your dapp to live on another chain, simply add its chainId to this array.
+// Entire list of chains: https://github.com/wevm/viem/blob/main/src/chains/index.ts
+export const includedChains = [1, 11155111, 137, 80001, 100, 43114, 43113, 5];
+
+export const NETWORKS_EXTRA_DATA: Record<string, ChainAttributes> = {
   [chains.hardhat.id]: {
     color: "#b8af0c",
   },

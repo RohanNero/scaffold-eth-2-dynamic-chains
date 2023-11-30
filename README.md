@@ -27,6 +27,8 @@ Before you begin, you need to install the following tools:
 
 ## Quickstart
 
+**To update which chains your dapp lives on, all you have to do is add or remove the chainId from the `includedChains` array inside `packages/nextjs/utils/networks.ts`!**
+
 To get started with Scaffold-ETH 2, follow the steps below:
 
 1. Clone this repo & install dependencies

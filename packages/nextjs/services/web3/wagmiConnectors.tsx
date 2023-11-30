@@ -19,8 +19,9 @@ import { getTargetNetwork } from "~~/utils/scaffold-eth";
 const configuredNetwork = getTargetNetwork();
 const { onlyLocalBurnerWallet } = scaffoldConfig;
 
-// We always want to have mainnet enabled (ENS resolution, ETH price, etc). But only once.
-const enabledChains = configuredNetwork.id === 1 ? [configuredNetwork] : [configuredNetwork, chains.mainnet];
+// We always want to have mainnet enabled (ENS resolution, ETH price, etc).
+const allChains = [...Object.values(chains), configuredNetwork];
+const enabledChains = configuredNetwork.id === 1 ? [configuredNetwork] : allChains;
 
 /**
  * Chains for the app

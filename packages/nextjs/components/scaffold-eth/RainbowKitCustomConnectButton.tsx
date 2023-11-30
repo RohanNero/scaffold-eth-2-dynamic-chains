@@ -15,6 +15,7 @@ import {
 import { Address, Balance, BlockieAvatar } from "~~/components/scaffold-eth";
 import { useAutoConnect, useNetworkColor } from "~~/hooks/scaffold-eth";
 import { getBlockExplorerAddressLink, getTargetNetwork } from "~~/utils/scaffold-eth";
+import { includedChains } from "~~/utils/scaffold-eth/networks";
 
 /**
  * Custom Wagmi Connect Button (watch balance + custom design)
@@ -45,8 +46,7 @@ export const RainbowKitCustomConnectButton = () => {
                   </button>
                 );
               }
-
-              if (chain.unsupported || chain.id !== configuredNetwork.id) {
+              if (chain.unsupported || chain.id !== configuredNetwork.id || !includedChains.includes(chain.id)) {
                 return (
                   <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-error btn-sm dropdown-toggle gap-1">
@@ -82,12 +82,11 @@ export const RainbowKitCustomConnectButton = () => {
                   </div>
                 );
               }
-
               return (
                 <div className="px-2 flex justify-end items-center">
                   <div className="flex flex-col items-center mr-1">
                     <Balance address={account.address} className="min-h-0 h-auto" />
-                    <span className="text-xs" style={{ color: networkColor }}>
+                    <span className="text-s" style={{ color: networkColor }}>
                       {chain.name}
                     </span>
                   </div>
