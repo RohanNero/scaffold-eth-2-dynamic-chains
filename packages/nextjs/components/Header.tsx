@@ -9,7 +9,7 @@ import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useNetworkColor, useOutsideClick } from "~~/hooks/scaffold-eth";
 import scaffoldConfig from "~~/scaffold.config";
-import { NETWORKS_EXTRA_DATA, includedChains } from "~~/utils/scaffold-eth/networks";
+import { chainData, includedChains } from "~~/utils/scaffold-eth/networks";
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
   const router = useRouter();
@@ -128,7 +128,7 @@ export const Header = () => {
               <option
                 key={chainKey}
                 value={`${chainKey}|${chainValue.id}`}
-                style={{ color: NETWORKS_EXTRA_DATA[chainValue.id]?.color?.toString() || "#bbbbbb" }}
+                style={{ color: chainData[chainValue.id]?.color?.toString() || "#bbbbbb" }}
                 selected={chain?.id === chainValue.id}
               >
                 {chainValue.name}
