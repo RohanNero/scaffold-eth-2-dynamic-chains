@@ -26,15 +26,16 @@ export function useAccountBalance(address?: string) {
   });
 
   const fetchPrice = async () => {
-    if (!chain || !chain.id) {
+    if (!chain || !chain?.id) {
       console.log("Error fetching price: chain is undefined.");
+      return;
     }
     // Easier to use mainnet Ethereum pricefeeds instead of swapping URL everytime the user switches chains.
     // For chains that don't have a native token/USD pricefeed on Ethereum mainnet,
     // you must pass an rpc url for the chain explicity.
 
     let url = "";
-    const listedUrl = chain?.id ? chainData[chain.id].url : undefined;
+    const listedUrl = chain?.id ? chainData[chain?.id]?.url : undefined;
     if (listedUrl) {
       console.log(`Url found: ${listedUrl}!`);
       console.log(`Using publicClient for ${chain?.name}...`);
@@ -51,6 +52,10 @@ export function useAccountBalance(address?: string) {
       functionName: "latestRoundData",
     });
     console.log("to:", chain?.id ? (chainData[chain?.id]?.priceFeed as `0x${string}`) : undefined);
+    if (!data || !chainData[chain?.id]?.priceFeed || !publicClient) {
+      console.log("call data or public client is undefined...");
+      return;
+    }
     const priceData = await publicClient.call({
       data: data,
       to: (chain?.id ? (chainData[chain?.id]?.priceFeed as `0x${string}`) : undefined) || undefined,
@@ -76,7 +81,6 @@ export function useAccountBalance(address?: string) {
   }, [isEthBalance, price]);
 
   useEffect(() => {
-    console.log("use effect reached!");
     console.log("fetchedBalance:", fetchedBalanceData);
     if (fetchedBalanceData?.formatted) {
       setBalance(Number(fetchedBalanceData.formatted));
