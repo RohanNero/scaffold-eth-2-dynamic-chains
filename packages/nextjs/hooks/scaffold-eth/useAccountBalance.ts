@@ -56,10 +56,13 @@ export function useAccountBalance(address?: string) {
       console.log("call data or public client is undefined...");
       return;
     }
+    console.log(data);
+    console.log(chainData[chain?.id]?.priceFeed);
     const priceData = await publicClient.call({
       data: data,
       to: (chain?.id ? (chainData[chain?.id]?.priceFeed as `0x${string}`) : undefined) || undefined,
     });
+    console.log(priceData);
     if (!priceData || !priceData.data) {
       console.log("priceData is undefined...");
       return;

@@ -69,6 +69,14 @@ Run smart contract test with `yarn hardhat:test`
 - Edit your frontend in `packages/nextjs/pages`
 - Edit your deployment scripts in `packages/hardhat/deploy`
 
+## Updating supported chains
+
+To edit the list of chains that are shown on the frontend, you simply remove/add the chainIds from the `includedChains` array inside `utils/scaffold-eth/networks.ts`.
+
+If you are adding a new chain that doesn't have data inside the `chainData` object, which is directly below the `includedChains` array, you will need to manually add the data. You can choose any Hex color for the `color` field, the `pricefeed` should correspond to the native chain's currency to USD feed from chainlink's list of pricefeeds.
+
+If you are using a pricefeed address that isn't on Ethereum Mainnet, you will also need to add an RPC URL for your chain in the `url` field.
+
 ## Documentation
 
 Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
