@@ -2,7 +2,7 @@
 
 <h4 align="center">
   <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
+  <a href="https://scaffoldeth.io">Website</a> |
   <a href="https://www.youtube.com/watch?v=tEQ5Rk8f-1I">Video</a>
 </h4>
 
